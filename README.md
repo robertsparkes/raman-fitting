@@ -5,13 +5,19 @@ This script implements the procedure for fitting Raman Spectra as described in:
 
 Sparkes et al., 2013. Automated Analysis of Carbon in Powdered Geological and Environmental Samples by Raman Spectroscopy. Applied Spectroscopy, 67, 7, 779-788. DOI: 10.1366/12-06826. 
 
+Publisher's version of the paper (subscription required): 
+http://asp.sagepub.com/content/67/7/779
+
+Final manuscript version archived free-of-charge according to publisher's open access policy:
+http://e-space.mmu.ac.uk/613531/
+
 This script analyses Raman spectra of Carbonaceous Material, by fitting Lorentzian distributions
 to the G, D1, D2, D3 and D4 peaks, as well as correcting for a linear background.
 The input is taken from a series of `x y` text files as produced by a Renishaw Raman spectrometer using
 Wire software, or from other Raman spectrometry software. 
 
 Proprietary .wxd files can be converted into two-column space-separated text files 
-(wavenumber intensity) using the "Wire Batch Convert" program. 
+(wavenumber intensity) using the "Wire Batch Convert" program provided by Renishaw. 
 
 The text files should be contained within one single folder, or grouped into sub-folders.
 
@@ -57,5 +63,5 @@ raman-fitting.sh -d -q -t 5 taiwan*.txt
 ~~~~
 
 Note: The included script "cropraman.sh" will take a file and crop to certain wavenumbers. The
-fitting procedure is less accurate if files extend too far beyond 1900 cm-1 as the assumption
+fitting procedure is less accurate if files extend too far beyond 2000 cm-1 as the assumption
 of a linear background is no longer valid.
