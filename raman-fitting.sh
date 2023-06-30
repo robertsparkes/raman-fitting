@@ -6,9 +6,8 @@
 # to the G, D1, D2, D3 and D4 peaks, as well as correcting for a linear background.
 # The input is taken from a series of text files as produced by a Renishaw Raman spectrometer using
 # Wire software. Proprietary .wxd files can be converted into two-column space-separated text files 
-# (wavenumber intensity) using the "Wire Batch Convert" program. 
-#
-# The text files should be contained within one single folder, or grouped into sub-folders.
+# (wavenumber intensity) using the "Wire Batch Convert" program. The text files should be contained 
+# within one single folder, or grouped into sub-folders.
 #
 # The script outputs three graphs, containing the raw spectra with linear background identified,
 # raw spectra with overalll fit superimposed and a residual shown, and the spectra following the fitting,
@@ -41,7 +40,7 @@
 #
 # Example code to prepare for and then analyse all samples with "taiwan" in the file name:
 # $ prepraman.sh 
-# $ raman-fitting.sh -d -q -t 5 taiwan*.txt
+# $ sparkesfitraman.sh -d -q -t 5 taiwan*.txt
 #
 # Note: The included script "cropraman.sh" will take a file and crop to certain wavenumbers. The
 # fitting procedure is less accurate if files extend too far beyond 1900 cm-1 as the assumption
@@ -85,7 +84,7 @@ if [ "$delete" = "true" ] ; then
 	fi
 fi
 
-echo"This file reports in FWHM" >> acombinedresults.txt
+echo "This file reports in FWHM" >> acombinedresults.txt
 
 echo Quiet? $quiet
 
@@ -237,7 +236,7 @@ gw(x) = 40/pi*(atan(x)+pi/2)+0.1
 
 pr g($tangloc)
 
-# Restrict d2 to the range of [1605:1625] and width to range 1-36cm
+# Restrict d2 to the range of [1605:1625] and width to range 1-32cm
 d2(x) = (1625-1605)/pi*(atan(x)+pi/2)+1605
 d2h(x) = sqrt(x**2)
 d2w(x) = 16/pi*(atan(x)+pi/2)+0.1
@@ -346,7 +345,7 @@ pr "int ", int
 pr "grad ", grad
 
 
-update 'param.txt' 'param2.txt'
+save fit 'param.txt' 'param2.txt'
 
 save "savefilevoigt.plt"
 
@@ -676,7 +675,7 @@ pr "int ", int
 pr "grad ", grad
 
 
-update 'param.txt' 'param2.txt'
+save fit 'param.txt' 'param2.txt'
 
 save "savefilelor.plt"
 
@@ -883,10 +882,10 @@ fi
 
 totalwidth=`echo "scale=2; $totalwidth * 2" | bc`
 gwidth=`echo "scale=2; $gwidth * 2" | bc`
-d3width=`echo "scale=2; $d1width * 2" | bc`
-d3width=`echo "scale=2; $d2width * 2" | bc`
+d1width=`echo "scale=2; $d1width * 2" | bc`
+d2width=`echo "scale=2; $d2width * 2" | bc`
 d3width=`echo "scale=2; $d3width * 2" | bc`
-d3width=`echo "scale=2; $d4width * 2" | bc`
+d4width=`echo "scale=2; $d4width * 2" | bc`
 
 
 echo $temp
